@@ -1,5 +1,5 @@
 import React from "react";
-import { Input, Button } from "antd";
+import { Button } from "antd";
 import { Formik, Form, Field } from "formik";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
