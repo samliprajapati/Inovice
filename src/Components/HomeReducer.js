@@ -66,9 +66,9 @@ export const homeReducer = (state = initialState, action) => {
         editInvoiceModal: false,
         invoiceList: state.invoiceList.map((item) => {
           if (item.id === action.payload.id) {
-            return [...state.invoiceList, action.payload];
+            return { ...item, ...action.payload };
           } else {
-            item;
+            return item;
           }
         }),
       };

@@ -19,6 +19,7 @@ import moment from "moment";
 function Home(props) {
   useEffect(() => {
     props.getInvoiceList();
+    // eslint-disable-next-line
   }, []);
   async function handleDownloadPdf() {
     const pdfInvoice =

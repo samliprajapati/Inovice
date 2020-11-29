@@ -17,13 +17,14 @@ function AddForm(props) {
         total: "",
         tax: "",
         discount: "",
-
         id: Date.now(),
       }}
       onSubmit={(values, { resetForm }) => {
         console.log(values);
         props.AddInvoice(values);
+        console.log("call reset form");
         resetForm();
+        console.log("call reset form");
       }}
     >
       {({
