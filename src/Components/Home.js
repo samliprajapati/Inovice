@@ -30,7 +30,7 @@ function Home(props) {
         InoviceNumber: `${invoice.invoiceNumber || ""}`,
         ListItem: `${invoice.listItems || ""}`,
         SubTotal: `${invoice.subTotal || ""}`,
-        Total: `${invoice.Total || ""}`,
+        Total: `${invoice.total || ""}`,
         Tax: `${invoice.tax || ""}`,
         Discount: `${invoice.discount || ""}`,
       }));
@@ -139,26 +139,26 @@ function Home(props) {
       title: "Discount",
       dataIndex: "discount",
     },
-    // {
-    //   title: "",
+    {
+      title: "",
 
-    //   render: (name, item, i) => {
-    //     console.log(props);
-    //     return (
-    //       <>
-    //         <div
-    //           style={{ cursor: "pointer" }}
-    //           onClick={() => {
-    //             props.setItem(item);
-    //             props.handleEditInvoiceModal(true);
-    //           }}
-    //         >
-    //           edit
-    //         </div>
-    //       </>
-    //     );
-    //   },
-    // },
+      render: (name, item, i) => {
+        console.log(props);
+        return (
+          <>
+            <div
+              style={{ cursor: "pointer" }}
+              onClick={() => {
+                props.setItem(item);
+                props.handleEditInvoiceModal(true);
+              }}
+            >
+              edit
+            </div>
+          </>
+        );
+      },
+    },
     {
       title: "",
 
@@ -211,7 +211,7 @@ function Home(props) {
             type="primary"
             onClick={() => props.handleAddInvoiceModal(true)}
           >
-            Add Invoice
+            Create Invoice
           </Button>
         </div>
       </div>

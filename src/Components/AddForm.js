@@ -1,11 +1,15 @@
 import React from "react";
-import { Input, Button, Form, message, Modal } from "antd";
-import { Formik } from "formik";
+import { Button } from "antd";
+import { Formik, Form, Field } from "formik";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { AddInvoice } from "./HomeAction";
 
 function AddForm(props) {
+  function handleCallBack(resetForm) {
+    console.log("........................");
+    resetForm();
+  }
   return (
     <Formik
       initialValues={{
@@ -21,10 +25,7 @@ function AddForm(props) {
       }}
       onSubmit={(values, { resetForm }) => {
         console.log(values);
-        props.AddInvoice(values);
-        console.log("call reset form");
-        resetForm();
-        console.log("call reset form");
+        props.AddInvoice(values, () => handleCallBack(resetForm));
       }}
     >
       {({
@@ -37,88 +38,38 @@ function AddForm(props) {
         isSubmitting,
         /* and other goodies */
       }) => (
-        <form onSubmit={handleSubmit}>
+        <Form>
           <p>Company Details</p>
-          <Form.Item
+          <Field
+            style={{ width: "100%" }}
+            type="companyDetails"
             name="companyDetails"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            value={values.companyDetails}
-          >
-            <Input />
-          </Form.Item>
+          />
           <p>Customer Details</p>
-          <Form.Item
+          <Field
+            style={{ width: "100%" }}
+            type="customerDetails"
             name="customerDetails"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            value={values.customerDetails}
-          >
-            <Input />
-          </Form.Item>
-          <p>Invoice Number</p>
-          <Form.Item
-            name="invoiceNo"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            value={values.invoiceNo}
-          >
-            <Input />
-          </Form.Item>
+          />
 
+          <p>Invoice Number</p>
+          <Field style={{ width: "100%" }} type="invoiceNo" name="invoiceNo" />
           <p>List Items</p>
-          <Form.Item
-            name="listItems"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            value={values.listItems}
-          >
-            <Input />
-          </Form.Item>
+          <Field style={{ width: "100%" }} type="listItems" name="listItems" />
 
           <p>Sub Total</p>
-          <Form.Item
-            name="subTotal"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            value={values.subTotal}
-          >
-            <Input />
-          </Form.Item>
-
+          <Field style={{ width: "100%" }} type="subTotal" name="subTotal" />
           <p>Total</p>
-          <Form.Item
-            name="total"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            value={values.total}
-          >
-            <Input />
-          </Form.Item>
-
+          <Field style={{ width: "100%" }} type="total" name="total" />
           <p>Tax</p>
-          <Form.Item
-            name="tax"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            value={values.tax}
-          >
-            <Input />
-          </Form.Item>
+          <Field style={{ width: "100%" }} type="tax" name="tax" />
           <p>Discount</p>
-          <Form.Item
-            name="discount"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            value={values.discount}
-          >
-            <Input />
-          </Form.Item>
-
+          <Field style={{ width: "100%" }} type="discount" name="discount" />
+          <p></p>
           <Button type="primary" htmlType="submit">
             Add
           </Button>
-        </form>
+        </Form>
       )}
     </Formik>
   );

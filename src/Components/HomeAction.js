@@ -7,7 +7,7 @@ const dummyData = [
     invoiceNumber: "1001",
     listItems: "laptop",
     subTotal: "50000",
-    Total: "48000",
+    total: "48000",
     tax: "10000",
     discount: "1",
     id: Date.now(),
@@ -30,21 +30,24 @@ export const getInvoiceList = () => (dispatch) => {
   }
 };
 
-export const AddInvoice = (data) => (dispatch) => {
+export const AddInvoice = (data, cb) => (dispatch) => {
   console.log(data);
   dispatch({
     type: types.ADD_INVOICE_REQUEST,
   });
-
-  dispatch(getInvoiceList());
-  dispatch({
-    type: types.ADD_INVOICE_SUCCESS,
-    payload: data,
-  });
-
-  dispatch({
-    type: types.ADD_INVOICE_FAILURE,
-  });
+  if (data) {
+    // dispatch(getInvoiceList());
+    cb && cb();
+    dispatch({
+      type: types.ADD_INVOICE_SUCCESS,
+      payload: data,
+    });
+  } else {
+    cb && cb();
+    dispatch({
+      type: types.ADD_INVOICE_FAILURE,
+    });
+  }
 };
 
 export const updateInvoice = (data) => (dispatch) => {

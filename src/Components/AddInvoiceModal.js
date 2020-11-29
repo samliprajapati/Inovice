@@ -6,7 +6,7 @@ const AddInvoiceModal = (props) => {
   return (
     <>
       <Modal
-        width={"80%"}
+        width={"40%"}
         title="Add InVoice"
         footer={null}
         visible={props.addInvoiceModal}
